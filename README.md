@@ -9,7 +9,7 @@ Ecommerce development project that leverages Node.js, Express.js, and MongoDB to
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/hrithikprasad8/ShopNest.git
+    git clone https://github.com/hrithikprasad8/classicIphones-ecommerce-nodejs.git
     ```
 
 2. Navigate to the project directory:
