@@ -1,0 +1,32 @@
+/* body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+
+/* body{
+  background-color: whitesmoke;
+} */
+.card {
+  background-color: #FAFAFA
+  }
+.navbar-nav {
+  margin-left: auto;
+}
+.toast-success {
+  background-color: #28a745; 
+  color: white; 
+  box-shadow: none;
+  opacity: 1;
+}
+.toast-error {
+  background-color: #dc3545; 
+  color: white;
+  box-shadow: none;
+}
+.card:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
+  border-color: black; 
+}
+

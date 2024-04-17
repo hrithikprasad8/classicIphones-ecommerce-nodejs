@@ -1,0 +1,64 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light"  >
+    <img src="https://i.pinimg.com/1200x/63/c5/f3/63c5f39343d73c3509eaecade461b73c.jpg" alt="" style="max-width:200px;max-height:50px; border-radius:5px;">
+    <a class="navbar-brand pl-3 " href="/" style="font-weight: lighter;color:black;">Retro Apple Haven <br><span style="font-style: italic;font-size:small;color:gray;">Where Classic iPhones Find New Homes!</span> </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarTogglerDemo02"
+      aria-controls="navbarTogglerDemo02"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 " style="color: black;font-weight:lighter;">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Products
+            <span class="sr-only">(current)</span></a>
+        </li>
+        {{#if user}}
+        <li class="nav-item ml-3">
+        <a class="nav-link" href="/cart" id="cart-count">Cart  <span class="badge " style="border: solid 1px grey;">{{cartCount}}</span></a>
+        </li>
+        
+        <li class="nav-item ml-3">
+          <a class="nav-link" href="/purchased-orders?id={{user._id}}">Orders</a>
+        </li>
+        {{/if}}
+         </ul>
+         <div class="srch" style="margin-right: 6px;">
+                          <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search">
+          </div>
+     <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          style="background-color: white; color:black;"
+        >
+          {{#if user}}
+            {{user.Name}}
+          {{else}}
+            Account
+          {{/if}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          {{#if user}}
+                      <a class="dropdown-item" href="/profile?id={{user._id}}">Profile</a>
+                      <a class="dropdown-item" href="/logout">Logout</a>
+
+          {{else}}
+            <a class="dropdown-item" href="/login">Login</a>
+           {{/if}}
+      </div>
+      </div>
+    </div>
+    </nav>
+   </header>

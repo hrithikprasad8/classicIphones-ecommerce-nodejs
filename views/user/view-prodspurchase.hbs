@@ -1,0 +1,22 @@
+<section>
+  <div class="container" >
+    <h4 style="color: black;font-weight:bold;margin-top:10px;text-align:center;">Products Details:</h4>
+    {{#each getOrderedProds}}
+    <a href="#" style="text-decoration: none;">
+    <article class="card mt-5" style="display: flex;flex-direction:row;border-radius:5px;">
+      <figure class="card-img" style="height: 300px;">
+        <div class="mt-2 ml-2">
+          <img src="/product-images/{{this.product._id}}.jpg" style="width: 400px;height:300px;border-radius:5px;border:solid 1px gray" />
+       </div>
+        </figure>
+      <div class="card-body mr-5 mt-5" style="color: grey;">
+        <h2 class="card-title" style="font-size:larger;font-weight:lighter;color:black;font-style:italic;">{{this.product.Name}}</h2>
+        <h5 class="card-title" style="font-size: medium;font-weight:bold;color:black;">${{this.product.Price}}</h5>
+        <h6 class="card-text" style="font-style: italic;font-weight:lighter;color:black;">Quantity:{{this.quantity}}</h6>
+        <button class="btn btn-danger float-right"><a href="" style="color: black;font-weight:bold;">Cancel Order</a></button>
+      </div>
+    </article>
+  </a>
+  {{/each}}
+  </div>
+  </section>

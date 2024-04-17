@@ -1,0 +1,131 @@
+<section>
+  <div class="container">
+    <div class="mt-5" style="text-align:center;">
+      <h3 style="font-weight: bold;font-size:larger;">Secure Checkout for Your Apple Favorites</h3>
+    <p style="font-weight:lighter;font-size:medium;">Secure your Apple must-haves with confidence at checkout.</p>
+    </div>
+    
+    <table class="table mt-5">
+      <thead>
+        <tr>
+          <th scope="col">Item</th>
+          <th scope="col">Title</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each products.cartItems}}
+          <tr>
+            <td>
+              <img
+                src="/product-images/{{this.product._id}}.jpg"
+                alt=""
+                style="width:70px;height:70px;"
+              />
+           </td>
+           <td>
+              {{this.product.Name}}
+            </td>
+
+            <td>${{this.product.Price}}</td>
+
+            <td>
+              <button
+                onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',-1)"
+                class="cart-tem-count mr-3"
+              >-</button><span id="{{this.product._id}}">{{this.quantity}}</span><button
+                onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',1)"
+                class="cart-tem-count ml-3"
+              >+</button>
+              </td>
+
+              <td>
+              <i class="bi bi-file-x"></i>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-file-x"
+                viewBox="0 0 16 16"
+                onclick="deleteItem('{{this.product._id}}','{{this._id}}')"
+              >
+                <path
+                  d="M6.146 6.146a.5.5 0 0 1 .708 0L8 7.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 8l1.147 1.146a.5.5 0 0 1-.708.708L8 8.707 6.854 9.854a.5.5 0 0 1-.708-.708L7.293 8 6.146 6.854a.5.5 0 0 1 0-.708"
+                />
+                <path
+                  d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1"
+                />
+              </svg>
+            </td>
+           </tr>
+        {{/each}}
+       </tbody>
+       </table>
+    <hr>
+    <h3 class="float-right" style="color: black;font-weight:bold;font-size:medium;">Total Amount : $ <span id="total">{{totalamount}}</span></h3>
+    <a href="/place-order" class="float-right  mt-5 btn btn-danger " style="position:absolute;right:15%;font-weight:bold;color:#1e1e1e;">PLACE ORDER</a>
+
+    <div class="Donate-make" style="text-align: center; border:solid 1px gray;border-radius:5px;height:170px;width:500px;margin:0 auto;">
+      <h4 style="color: black; font-size:small;font-weight:bold;font-style:italic;padding-top:8px;">Support Transformative Social Work in India</h4>
+      <div class="chckbx" style="margin-top: 25px;">
+         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault" style="color:black;">
+    Donate and make a difference
+  </label>
+  <a href="" style="color: red;margin-left:12px;">Know more..</a>
+      </div>
+      <div class="mny" style="margin-top: 15px;">
+        <a href="" style="border: solid 1px grey;border-radius:3px;color:black;">$10</a>
+        <a href="" style="border: solid 1px grey;border-radius:3px;color:black; margin-left:10px;">$50</a>
+        <a href="" style="border: solid 1px grey;border-radius:3px;color:black;margin-left:10px;">$100</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+<script>
+  function changeQuantity(cartid,prodid,userId,count){
+    let quantity = parseInt(document.getElementById(prodid).innerHTML)
+    count = parseInt(count)
+    $.ajax({
+      url:'/change-product-quantity',
+      data:{
+        cartid:cartid,
+        prodid:prodid,
+        user:userId,
+        count:count,
+        quantity:quantity
+      },
+      method:'post',
+      success:(response)=>{
+        if(response.removeProduct){
+          {{!-- alert("Product removed from the cart,check it out!") --}}
+          notyf.error('Product removed from the cart')
+          location.reload()
+           {{!-- window.location.href = '/cartempty'; --}}
+        }else{
+          document.getElementById(prodid).innerHTML=quantity+count
+          document.getElementById('total').innerHTML=response.total
+        }
+
+      }
+    })
+  }
+
+
+  function deleteItem(prodid,cartid){
+    $.ajax({
+      url:'/remove-product',
+      data:{
+        productid:prodid,
+        cartid:cartid
+      },
+      method:'post',
+      success:(response)=>{
+        alert(response)
+      }
+})
+}
+</script>

@@ -1,0 +1,63 @@
+<section>
+  <div class="container">
+    <h1 style="font-weight: bold;margin-top:10px;font-style:normal;font-size:larger;">Purchase Summary:</h1>
+    <div class="imgcom mt-5" style="display: flex;flex-direction:row;justify-content:center;align-items:center;gap:10px;">
+    <img src="https://static.vecteezy.com/system/resources/previews/011/401/535/non_2x/online-shopping-trolley-click-and-collect-order-logo-design-template-vector.jpg" alt="" style="width:400px;height:300px;border-radius:5px;">
+              <h2 style="font-weight: bold;font-style:italic;font-size:medium;margin-top:30px;text-align:center;">"Keep track of your Apple product orders and their status."</h2>
+
+    </div>
+
+    <table class="table mt-5">
+      <thead>
+        <tr >
+          <th scope="col">Date</th>
+          <th scope="col">Address</th>
+
+          <th scope="col">Pincode</th>
+          <th scope="col">Mobile</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Payment</th>
+          <th scope="col">Status</th>
+      </tr>
+      </thead>
+      <tbody style="font-style: italic;">
+                    {{#each pickOrderCart}}
+      <tr>
+          <td>
+                {{this.date}}
+         </td>
+
+            <td>
+                {{this.deliveryDetails.Address}}
+           </td>
+
+            <td>
+                {{this.deliveryDetails.Pincode}}
+           </td>
+
+            <td>
+                {{this.deliveryDetails.Phoneno}}
+           </td>
+
+            <td>
+                {{this.totalAmount}}
+           </td>
+
+            <td>
+                {{this.paymentMethod}}
+           </td>
+
+            <td>
+                {{this.status}}
+            </td>
+
+            <td>
+                <button class="btn "><a href="/ordererd-productsview?id={{this._id}}" style="color:black;font-weight:bold;text-decoration:none;">View Products</a></button>
+            </td>
+            </tr>
+                      {{/each}}
+            </tbody>
+            </table>
+  </div>
+  </div>
+</section>

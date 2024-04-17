@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-6" style=" margin:0 auto;">
+    <div class="container mt-5" style="max-width: 450px; width:100%;" >
+      <h2 style="text-align: center;">Login</h2>
+      <form action="/login" method="post">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            name="Email"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+            value=""
+          />
+          {{#if EmailloggedErr}}
+            <p class="error" style="color: red;">{{EmailloggedErr}}</p>
+            {{/if}}
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="Password"
+            id="exampleInputPassword1"
+            placeholder="Password"
+            value=""
+          />
+          {{#if PasswordLoggedErr}}
+          <p class="error" style="color:red;">{{PasswordLoggedErr}}</p>
+          {{/if}}
+        </div>
+        <a href="/signup">Create new account ?</a>
+        <button type="submit" class="btn btn-primary float-right">Submit</button>
+      </form>
+   </div>
+  </div>
+</div>
